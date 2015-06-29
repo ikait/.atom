@@ -1,0 +1,27 @@
+"*":
+  "exception-reporting":
+    userId: "dd5b16bd-b01c-5a49-f1d1-26a4b4ff8a33"
+  welcome:
+    showOnStartup: false
+  core:
+    themes: [
+      "atom-dark-ui"
+      "one-dark-syntax"
+    ]
+  editor:
+    invisibles: {}
+    fontSize: 12
+    showIndentGuide: true
+    showInvisibles: true
+    softWrap: true
+    zoomFontWhenCtrlScrolling: true
+    fontFamily: "Menlo"
+    lineHeight: 1.4
+  minimap:
+    scrollAnimation: true
+    plugins:
+      "highlight-selected": true
+  date: {}
+  "tree-view": {}
+  "markdown-preview":
+    useGitHubStyle: true
