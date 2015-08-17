@@ -25,3 +25,5 @@
   "tree-view": {}
   "markdown-preview":
     useGitHubStyle: true
+  "save-session":
+    dataSaveFolder: "/Users/Taishi/.atom/packages/save-session/projects"
