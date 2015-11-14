@@ -15,7 +15,7 @@
     showInvisibles: true
     softWrap: true
     zoomFontWhenCtrlScrolling: true
-    fontFamily: "Menlo"
+    fontFamily: "Source Hans Code JP"
     lineHeight: 1.4
   minimap:
     scrollAnimation: true

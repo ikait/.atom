@@ -3,11 +3,12 @@ fs = require 'fs-plus'
 path = require 'path'
 {TextEditor, BufferedProcess} = require 'atom'
 {CompositeDisposable} = require 'event-kit'
+{registerOrUpdateElement} = require 'atom-utils'
 
 # Internal: The {MinimapPluginGeneratorElement} is used whenever the user
 # triggers the `minimap:generate-plugin` command.
 module.exports =
-class MinimapPluginGeneratorElement extends HTMLElement
+class MinimapPluginGeneratorElement
   previouslyFocusedElement: null
   mode: null
 
@@ -89,7 +90,7 @@ class MinimapPluginGeneratorElement extends HTMLElement
       true
 
   initPackage: (packagePath, callback) ->
-    templatePath = path.resolve __dirname, path.join('..','templates','plugin')
+    templatePath = path.resolve __dirname, path.join('..','templates',"plugin-#{@template}")
     @runCommand(atom.packages.getApmPath(), ['init', "-p", "#{packagePath}", "--template", templatePath], callback)
 
   linkPackage: (packagePath, callback) ->
@@ -127,7 +128,8 @@ class MinimapPluginGeneratorElement extends HTMLElement
     new BufferedProcess({command, args, exit, options})
 
 
-module.exports = MinimapPluginGeneratorElement = document.registerElement 'minimap-plugin-generator', prototype: MinimapPluginGeneratorElement.prototype
+module.exports =
+MinimapPluginGeneratorElement = registerOrUpdateElement 'minimap-plugin-generator', MinimapPluginGeneratorElement.prototype
 
 atom.commands.add 'minimap-plugin-generator', {
   'core:confirm': -> @confirm()

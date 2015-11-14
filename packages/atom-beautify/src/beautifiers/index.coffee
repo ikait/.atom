@@ -37,20 +37,26 @@ module.exports = class Beautifiers extends EventEmitter
     'autopep8'
     'coffee-formatter'
     'coffee-fmt'
+    'clang-format'
     'htmlbeautifier'
     'csscomb'
+    'gherkin'
     'gofmt'
     'fortran-beautifier'
     'js-beautify'
+    'jscs'
     'perltidy'
     'php-cs-fixer'
     'prettydiff'
+    'puppet-fix'
     'rubocop'
     'ruby-beautify'
     'rustfmt'
     'sqlformat'
+    'stylish-haskell'
     'tidy-markdown'
     'typescript-formatter'
+    'yapf'
   ]
 
   ###
@@ -114,6 +120,11 @@ module.exports = class Beautifiers extends EventEmitter
         # Init field for supported beautifiers
         op.beautifiers = []
 
+        # Remember Option's Key
+        op.key =  field
+
+        # Remember Option's Language
+        op.language = lang
 
         # Add option
         options[field] = op

@@ -134,17 +134,27 @@
             { 'type': 'separator' }
             {
               'label': 'Jump to Definition'
-              'command': 'markdown-writer:jump-between-reference-definition'
+              'command': 'markdown-writer:jump-to-reference-definition'
+            }
+            { 'type': 'separator' }
+            {
+              'label': 'Jump to Next Table Cell'
+              'command': 'markdown-writer:jump-to-next-table-cell'
             }
             { 'type': 'separator' }
             {
               'label': 'Format Table'
               'command': 'markdown-writer:format-table'
             }
-            { 'type': 'separator' }
+          ]
+        }
+        { 'type': 'separator' }
+        {
+          'label': 'Configurations'
+          'submenu': [
             {
-              'label': 'Jump to Next Table Cell'
-              'command': 'markdown-writer:jump-to-next-table-cell'
+              'label': 'Create Default Keymaps'
+              'command': 'markdown-writer:create-default-keymaps'
             }
           ]
         }

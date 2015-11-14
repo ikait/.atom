@@ -1,16 +1,18 @@
 {
   "name": "date",
   "main": "./lib/date.js",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Insert the current date & time. See the readme for format options.",
-  "activationEvents": [
-    "date:date",
-    "date:time",
-    "date:datetime"
-  ],
+  "activationCommands": {
+    "atom-text-editor": [
+      "date:date",
+      "date:time",
+      "date:datetime"
+    ]
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dannyfritz/atom-date"
+    "url": "git+https://github.com/dannyfritz/atom-date.git"
   },
   "license": "MIT",
   "engines": {
@@ -24,11 +26,11 @@
   "bugs": {
     "url": "https://github.com/dannyfritz/atom-date/issues"
   },
-  "homepage": "https://github.com/dannyfritz/atom-date",
-  "_id": "date@1.0.0",
-  "_shasum": "59daa244a6ee8ee418711295d933217528476291",
-  "_resolved": "file:../d-115523-88633-1p57ubx/package.tgz",
-  "_from": "../d-115523-88633-1p57ubx/package.tgz",
+  "homepage": "https://github.com/dannyfritz/atom-date#readme",
+  "_id": "date@1.1.1",
+  "_shasum": "ba985b53caa0fc6858360017a043363ecb13b05f",
+  "_resolved": "file:../d-1151014-40679-f7oabt/package.tgz",
+  "_from": "../d-1151014-40679-f7oabt/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

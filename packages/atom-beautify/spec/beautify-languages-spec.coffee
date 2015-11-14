@@ -24,9 +24,9 @@ describe "BeautifyLanguages", ->
     "c", "coffee-script", "css", "html",
     "java", "javascript", "json", "less",
     "mustache", "objective-c", "perl", "php",
-    "python", "ruby", "sass", "sql",
+    "python", "ruby", "sass", "sql", "svg",
     "xml", "csharp", "gfm", "marko",
-    "tss", "go", "html-swig"
+    "go", "html-swig"
     ]
   # All Atom packages that Atom Beautify is dependent on
   dependentPackages = [

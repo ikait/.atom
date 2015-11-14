@@ -6,8 +6,13 @@ class Configuration
   @prefix: "markdown-writer"
 
   @defaults:
-    # static engine of your blog
+    # static engine of your blog, see `@engines`
     siteEngine: "general"
+
+    # project specific configuration file name
+    # https://github.com/zhuochun/md-writer/wiki/Settings-for-individual-projects
+    projectConfigFile: "_mdwriter.cson"
+
     # root directory of your blog
     siteLocalDir: "/config/your/local/directory/in/settings"
     # directory to drafts from the root of siteLocalDir
@@ -16,26 +21,18 @@ class Configuration
     sitePostsDir: "_posts/{year}/"
     # directory to images from the root of siteLocalDir
     siteImagesDir: "images/{year}/{month}/"
+
     # URL to your blog
     siteUrl: ""
-    # URLs to tags/posts/categories JSON file
+    # URLs to tags/posts/categories JSON files
+    # https://github.com/zhuochun/md-writer/wiki/Settings-for-Front-Matters
     urlForTags: ""
     urlForPosts: ""
     urlForCategories: ""
-    # filetypes markdown-writer commands apply
-    grammars: [
-      'source.gfm'
-      'source.litcoffee'
-      'text.plain'
-      'text.plain.null-grammar'
-    ]
-    # file extension of posts/drafts
-    fileExtension: ".markdown"
-    # whether rename filename based on title in front matter when publishing
-    publishRenameBasedOnTitle: false
-    # whether publish keep draft's extensio name used
-    publishKeepFileExtname: false
-    # filename format of new posts/drafts created
+
+    # filename format of new drafts created
+    newDraftFileName: "{title}{extension}"
+    # filename format of new posts created
     newPostFileName: "{year}-{month}-{day}-{title}{extension}"
     # front matter template
     frontMatter: """
@@ -45,22 +42,96 @@ class Configuration
       date: "<date>"
       ---
       """
-    # image tag template
-    imageTag: "![<alt>](<src>)"
-    # fenced code block used
-    codeblock:
-      before: "```\n"
-      after: "\n```"
-      regexBefore: "```(?:[\\w- ]+)?\\n"
-      regexAfter: "\\n```"
+
+    # file extension of posts/drafts
+    fileExtension: ".markdown"
+
+    # whether rename filename based on title in front matter when publishing
+    publishRenameBasedOnTitle: false
+    # whether publish keep draft's extension name used
+    publishKeepFileExtname: false
+
+    # list continuation in middle of line
+    inlineNewLineContinuation: false
+
     # path to a .cson file that stores links added for automatic linking
     siteLinkPath: path.join(atom.getConfigDirPath(), "#{@prefix}-links.cson")
     # reference tag insert position (paragraph or article)
     referenceInsertPosition: "paragraph"
     # reference tag indent space (0 or 2)
     referenceIndentLength: 2
-    # project specific configuration file name
-    projectConfigFile: "_mdwriter.cson"
+
+    # NOTE textStyles and lineStyles
+    #
+    # In `regex{Before,After}`, `regexMatch{Before,After}`, DO NOT USE CAPTURE GROUP!
+    # Capture group will break things! USE non-capturing group `(?:)` instead.
+    #
+    # Use `regexMatch{Before,After}` when you mean it is an exact match of the style.
+    # If this match regex test = true, the style will be toggled.
+    #
+    # Use `regex{Before,After}`, when you mean it is an general match of the style.
+    # If this match regex test = true, the style will be replaced by new style.
+    #
+    # When `regexMatch{Before,After}` is not specified, `regex{Before,After}` is used instead.
+
+    # text styles related
+    textStyles:
+      code:
+        before: "`", after: "`"
+      bold:
+        before: "**", after: "**"
+      italic:
+        before: "_", after: "_"
+      keystroke:
+        before: "<kbd>", after: "</kbd>"
+      strikethrough:
+        before: "~~", after: "~~"
+      codeblock:
+        before: "```\n"
+        after: "\n```"
+        regexBefore: "```(?:[\\w- ]+)?\\n"
+        regexAfter: "\\n```"
+
+    # line styles related
+    lineStyles:
+      h1: before: "# "
+      h2: before: "## "
+      h3: before: "### "
+      h4: before: "#### "
+      h5: before: "##### "
+      ul:
+        before: "- ",
+        regexMatchBefore: "(?:-|\\*|\\+)\\s"
+        regexBefore: "(?:-|\\*|\\+|\\d+\\.)\\s"
+      ol:
+        before: "1. ",
+        regexMatchBefore: "(?:\\d+\\.)\\s"
+        regexBefore: "(?:-|\\*|\\+|\\d+\\.)\\s"
+      task:
+        before: "- [ ] ",
+        regexMatchBefore: "(?:-|\\*|\\+|\\d+\\.)\\s+\\[ ]\\s"
+        regexBefore: "(?:-|\\*|\\+|\\d+\\.)\\s*(?:\\[[xX ]])?\\s"
+      taskdone:
+        before: "- [X] ",
+        regexMatchBefore: "(?:-|\\*|\\+|\\d+\\.)\\s+\\[[xX]]\\s"
+        regexBefore: "(?:-|\\*|\\+|\\d+\\.)\\s*(?:\\[[xX ]])?\\s"
+      blockquote: before: "> "
+
+    # image tag template
+    imageTag: "![<alt>](<src>)"
+
+    # table default alignments: "empty", "left", "right", "center"
+    tableAlignment: "empty"
+    # insert extra pipes at the beginning and the end of table rows
+    tableExtraPipes: false
+
+    # filetypes markdown-writer commands apply
+    grammars: [
+      'source.gfm'
+      'source.litcoffee'
+      'text.plain'
+      'text.plain.null-grammar'
+    ]
 
   @engines:
     html:
@@ -70,11 +141,12 @@ class Configuration
         </a>
         """
     jekyll:
-      codeblock:
-        before: "{% highlight %}\n"
-        after: "\n{% endhighlight %}"
-        regexBefore: "{% highlight(?: .+)? %}\n"
-        regexAfter: "\n{% endhighlight %}"
+      textStyles:
+        codeblock:
+          before: "{% highlight %}\n"
+          after: "\n{% endhighlight %}"
+          regexBefore: "{% highlight(?: .+)? %}\n"
+          regexAfter: "\n{% endhighlight %}"
     octopress:
       imageTag: "{% img {align} {src} {width} {height} '{alt}' %}"
     hexo:
@@ -90,11 +162,16 @@ class Configuration
 
   engineNames: -> Object.keys(@constructor.engines)
 
+  keyPath: (key) -> "#{@constructor.prefix}.#{key}"
+
   get: (key) ->
     @getProject(key) || @getUser(key) || @getEngine(key) || @getDefault(key)
 
   set: (key, val) ->
     atom.config.set(@keyPath(key), val)
+
+  restoreDefault: (key) ->
+    atom.config.unset(@keyPath(key))
 
   # get config.defaults
   getDefault: (key) ->
@@ -105,6 +182,7 @@ class Configuration
     engine = @getProject("siteEngine") ||
              @getUser("siteEngine") ||
              @getDefault("siteEngine")
+
     if engine in @engineNames()
       @_valueForKeyPath(@constructor.engines[engine], key)
 
@@ -123,7 +201,7 @@ class Configuration
     project = atom.project.getPaths()[0]
     config = @_loadProjectConfig(project)
 
-    return @_valueForKeyPath(config, key)
+    @_valueForKeyPath(config, key)
 
   _loadProjectConfig: (project) ->
     if @constructor.projectConfigs[project]
@@ -134,11 +212,6 @@ class Configuration
 
     config = CSON.readFileSync(filePath) if fs.existsSync(filePath)
     @constructor.projectConfigs[project] = config || {}
-
-  restoreDefault: (key) ->
-    atom.config.unset(@keyPath(key))
-
-  keyPath: (key) -> "#{@constructor.prefix}.#{key}"
 
   _valueForKeyPath: (object, keyPath) ->
     keys = keyPath.split('.')

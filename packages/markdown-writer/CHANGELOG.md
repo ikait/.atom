@@ -1,7 +1,90 @@
+## 2.0.1
+
+* Fix publish draft in new buffers
+* Use `atom.confirm` for better confirm UIs
+* Add tabindex to view dialogs
+* Catch YAML parse error in FrontMatter
+* Fix ul/ol regex to restrict at least an empty space
+
+## 2.0.0
+
+* Reorganize codebase
+  * Separate codes into views, commands, helpers
+  * Rename `main.coffee` to `markdown-writer.coffee`
+* Add a lot of tests, from 127 -> 219 tests
+* Add `regexMatchBefore` to lists' line styles in config
+* Improve `insert-new-line` behaviors
+  * Add new config `inlineNewLineContinuation`
+  * Support more lists continuation
+* Improve `correct-order-list-numbers` to correct all levels
+* Improve `format-table` behaviors
+  * Format on non-table text does not raise error
+  * Format table multiple times is idempotent
+* Change `jump-between-reference-definition` to `jump-to-reference-definition`
+
+## 1.9.3
+
+* Fix publish-draft require missing file
+
+## 1.9.2
+## 1.9.1
+
+* Fix insert link exception when try to get a saved link
+* Fix insert link not saving links when the CSON file does not exists
+* Add tests for insert link view
+
+## 1.9.0
+
+* Refactoring code
+* Fix bug when edit tags/categories in files without front matter
+* Add travis for testing
+* Improve create draft, allow more customization as create post
+* Fix bug publish draft where destination path does not exists
+
+## 1.8.1
+
+* Fix table columnWidths bug
+
+## 1.8.0
+
+* Fix table format with extra pipes
+* Fix handle single column tables
+* Improve table format to handle alignments
+* Improve table format to handle double-width characters
+* Add table default alignment, extra pipes configurations
+
+## 1.7.1
+
+* Fix remove top/bottom link definition would access out of bound lines
+* Fix toggle multiple text styles, text become missing
+
+## 1.7.0
+
+* Improve text selection for link/image/text styles
+* Support edit link from reference link definition
+* Improve search reference link/definition logic
+
+## 1.6.0
+
+* Support customization on styles, refer to [wiki][2b17f5ff]
+
+  [2b17f5ff]: https://github.com/zhuochun/md-writer/wiki/Settings-for-individual-projects "Settings for individual projects"
+
+## 1.5.1
+
+* Add missing command to Menu
+
+## 1.5.0
+
+* Remove default keymaps, refer to [wiki][72346d33].
+* Add command `markdown-writer:create-default-keymaps`
+
+  [72346d33]: https://github.com/zhuochun/md-writer/wiki/Settings-for-Keymaps "Settings for Keymaps"
+
 ## 1.4.0
 
 * Fix cursor position after empty codeblock insertion
-* Fix `Tab` behaviour with range selections
+* Fix `Tab` behavior with range selections
 * Modified some default setting values
 * Updated cheatsheet
 
@@ -59,7 +142,7 @@
 
 ## 0.10.2
 
-* Fix package's atom engine SemVer
+* Fix package's atom engine version
 * Fix tag RegExp escape
 
 ## 0.10.1

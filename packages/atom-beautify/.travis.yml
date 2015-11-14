@@ -19,13 +19,14 @@ notifications:
 script: sh build-package.sh
 
 env:
-    - APM_TEST_PACKAGES="language-marko language-tss language-html-swig"
+    - APM_TEST_PACKAGES="language-marko language-html-swig language-svg"
 
 cache:
     - pip
     - directories:
         - node_modules
         - $HOME/.atom
+        - $HOME/.stack
 
 before_install:
   # Update Homebrew
@@ -36,6 +37,7 @@ before_install:
   # - gem install ruby-beautify --verbose
   - gem install rubocop
   - gem install htmlbeautifier
+  - gem install puppet-lint
   # Python language support
   - brew install python
   - pip install --upgrade autopep8
@@ -52,3 +54,7 @@ before_install:
   - brew gist-logs php-cs-fixer || true
   # CoffeeScript
   - npm install coffee-formatter
+  # Haskell
+  - brew install haskell-stack
+  - stack setup
+  - stack install stylish-haskell

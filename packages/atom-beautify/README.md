@@ -3,13 +3,13 @@
 [![Build Status](https://travis-ci.org/Glavin001/atom-beautify.svg?branch=master)](https://travis-ci.org/Glavin001/atom-beautify)
 [![Build status](https://ci.appveyor.com/api/projects/status/himnq7tjxl2fdc8u?svg=true)](https://ci.appveyor.com/project/Glavin001/atom-beautify)
 [![Gitter chat](https://img.shields.io/badge/gitter-Glavin001%2Fatom--beautify-1dce73.svg)](https://gitter.im/Glavin001/atom-beautify)
-[![Gratipay](http://img.shields.io/gratipay/Glavin001.svg)](https://gratipay.com/Glavin001/)
 [![Paypal Donations](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X2RK5DKN6YXPJ&lc=CA&item_name=Atom%2dBeautify&item_number=atom%2dbeautify&currency_code=CAD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
 
+[![Throughput Graph](https://graphs.waffle.io/Glavin001/atom-beautify/throughput.svg)](https://waffle.io/Glavin001/atom-beautify/metrics)
 
 > [Beautify](https://github.com/einars/js-beautify)
 HTML (including [Handlebars](http://handlebarsjs.com/)),
-CSS (including [Sass](http://sass-lang.com/) and [LESS](http://lesscss.org/)),
+CSS (including [Sass](http://sass-lang.com/) and [Less](http://lesscss.org/)),
 JavaScript, and much more in Atom.
 
 Atom Package: https://atom.io/packages/atom-beautify
@@ -29,11 +29,12 @@ Or Settings/Preferences ➔ Packages ➔ Search for `atom-beautify`
   - [x] [Embedded Ruby (ERB)](https://github.com/Glavin001/atom-beautify/issues/80)
     - Requires [htmlbeautifier](https://github.com/threedaymonk/htmlbeautifier)
   - [x] XML
+  - [x] SVG
   - [x] [Marko](https://github.com/raptorjs/marko)
     - Requires [language-marko](https://github.com/raptorjs/atom-language-marko)
 - [x] CSS, including
   - [Sass](http://sass-lang.com/)
-  - [LESS](http://lesscss.org/)
+  - [Less](http://lesscss.org/)
 - [x] [SQL](https://github.com/Glavin001/atom-beautify/pull/67)
   - Requires [python-sqlparse](https://github.com/andialbrecht/sqlparse)
 - [x] [Markdown](https://github.com/Glavin001/atom-beautify/issues/292)
@@ -42,8 +43,8 @@ Or Settings/Preferences ➔ Packages ➔ Search for `atom-beautify`
 - [x] [PHP](https://github.com/donaldpipowitch/atom-beautify/issues/26)  
   - Requires [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to be already installed.
 - [x] [Python](https://github.com/donaldpipowitch/atom-beautify/issues/24)
-  - Requires [autopep8](https://github.com/hhatto/autopep8) to be already installed.
-  - Beautifies to [PEP 8](http://legacy.python.org/dev/peps/pep-0008/).
+  - Requires [autopep8](https://github.com/hhatto/autopep8) or [YAPF](https://github.com/google/yapf) to be already installed.
+  - Beautifies to [PEP 8](https://www.python.org/dev/peps/pep-0008/).
 - [x] [Ruby](https://github.com/donaldpipowitch/atom-beautify/issues/25)
   - Requires [Ruby Beautify](https://github.com/erniebrodeur/ruby-beautify)
 - [x] [CoffeeScript](https://github.com/donaldpipowitch/atom-beautify/issues/31)
@@ -67,6 +68,8 @@ Or Settings/Preferences ➔ Packages ➔ Search for `atom-beautify`
 - [x] [Vala](https://github.com/Glavin001/atom-beautify/issues/57)
   - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)
 - [x] [TypeScript](https://github.com/Glavin001/atom-beautify/issues/49)
+- [x] [Haskell](https://github.com/Glavin001/atom-beautify/issues/628)
+  - Requires [stylish-haskell](https://github.com/jaspervdj/stylish-haskell)
 
 ## Usage
 
@@ -80,7 +83,7 @@ You can also type `ctrl-alt-b` as a shortcut or click `Packages > Beautify` in t
 
 #### Custom Keyboard Shortcuts
 
-See [Keymaps In-Depth](https://atom.io/docs/latest/advanced/keymaps) for more details.
+See [Keymaps In-Depth](https://atom.io/docs/latest/behind-atom-keymaps-in-depth) for more details.
 
 For example:
 
